@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Лента новостей | РИА Новости</title>
+  <link rel="stylesheet" type="text/css" href="http://cdn15.img22.ria.ru/min/css/mobile/index.m.css">
+  <script>
+    var arr1 = new Array('Неизвестный','Президент Гондураса','Пенсионер','Сотрудник полиции','Боец Правого Сектора','Моряк-гомосексуалист','Президент Украины','Бандеровец','Известный писатель','Одноногий человек','Артемий Лебедев','89-летний зоофил','Афроамериканец','Владимир Путин','Александр Лукашенко','Владелец известной компании','Пьяный десантник','Билл Гейтс','Пьяный ополченец','Китайский рабочий','Программист','Строитель','Министр обороны','Чак Норрис','Алкоголик','Наркоман','Знаменитый блоггер','Маньяк','Православный активист','Кондуктор','Водитель маршрутки','Хакер','Аноним','Боец ИГИЛ','Илон Маск','Дональд Трамп','Футбольный фанат','Тесак','Ким Чен Ын');
+    var arr2 = new Array('убил','зарезал','изнасиловал','застрелил','родил','послал на хуй','повесил на столбе','превратился в','убил и съел','подал в суд на','съел','предал анафеме','благословил','снялся в порнофильме про','купил себе','обоссал','выкакал','покусал','забил ногами','поцеловал в живот','вызвал на дуэль','проиграл в карты','выкинул из окна','утопил в унитазе','бросил под поезд','снял на видео','влюбился в','сбил на автомобиле','переехал','взломал','украл');
+    var arr3 = new Array('старушку','НЛО','жену','депутата','пенсионера','резиновую уточку','мухомор','человека-паука','себя','сотрудника ФСБ','Порошенко','ребёнка','президента США','сирийского беженца','школьника','8-летнюю девочку','друга','батон колбасы','собаку','кошку','хомячка','курицу','крымчанина','клизму','переписку депутата Госдумы','эльфа','таракана','компьютерную мышь','бутылку водки','твиттер','свой паспорт','неизвестного писателя','аутиста');
+    var arr4 = new Array(' на почве',' из-за',' в бытовом споре по поводу',' в борьбе за независимость',' в результате воздействия',' под действием',' в состоянии',' под видом',' на виду у любителей',' из-за недостатка',' от переизбытка',' в отместку за расстрел',', протестуя против',', устав от',', опасаясь',', угнав вагон',', доказывая вред',' при поддержке',' с помощью');
+    var arr5 = new Array('перхоти','Америки','гнилых пельменей','интернетов','картофеля','сала','кабачков','наркотиков','алкоголя','инопланетных излучений','нелегальной иммиграции',' педофилов','ФСБ','импотенции','секса','котлет','комаров','покемонов','соцсетей','порнографии','денег','негров','местного детского сада','повышения налогов','анального секса','мексиканских рабочих','соседнего макдональдса','всего','ништяков','своего интернет-провайдера','аниме','ЛГБТ','толерантности','эболы','русского мира','свиного гриппа','боевых бурятов','онлайн-игр','онанизма','операционной системы Linux','ночных клубов','толкиенистов','шаурмы','хакеров','пятой колонны');
+
+    function rnd(limit){
+      return(Math.floor(Math.random()*limit));
+    }
+
+    function getNews(){
+      return arr1[rnd(arr1.length)] + ' ' + arr2[rnd(arr2.length)] + ' ' + arr3[rnd(arr3.length)] + arr4[rnd(arr4.length)] + ' ' + arr5[rnd(arr5.length)];
+    }
+    function fillNews(e){
+      var text = '';
+      var time = new Date();
+      for(var i = 0;i<19;i++){
+        time.setMinutes(time.getMinutes() - rnd(19) - 1);
+        text += "<li><a><span class='title-text'>"+getNews()+" <span class='time-text'>"+time.getHours()+":"+time.getMinutes()+"</span></span></a></li>";
+      }
+      document.getElementsByClassName('lenta-news')[0].innerHTML = text;
+    }
+  </script>
+</head>
+<body>
+  <div class="pagewrap" id="PageWrap">
+    <div class="main-layer layer-size">
+      <div id="ContWrapper">
+        <div id="ContPlace">
+          <div class="head">
+            <div class="logo-place">
+              <a href="/">
+                <img src="http://cdn12.img22.ria.ru/i/mobile/ria_logo.png?25" alt="РИА Новости" title="РИА Новости">
+              </a>
+            </div>
+            <div class="header-search">
+              <form action="/search/">
+                <input class="header-search__form-text" name="query" type="text">
+                <input class="header-search__form-submit js-open-search" value="" type="submit">
+              </form>
+            </div>
+            <div class="navbutton js-open-main-menu">
+              <span class="top"></span>
+              <span class="middle"></span>
+              <span class="bottom"></span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="title-line ">
+              <h1 class="f-left">Лента новостей</h1>
+              <span class="now">
+                <script>
+                  var a = new Date();document.write(a.getDate() + "." + a.getMonth() + "." + a.getFullYear())
+                </script>
+              </span>
+            </div>
+            <div class="content-section">
+              <ul class="lenta-news">
+                <script>
+                  fillNews();
+                </script>
+
+              </ul>
+              <div class="box-pager">
+                <a onclick="fillNews();return false;" class="butt butt-next" href="/lenta/index_2.html">
+                  <span class="text">Следующие 20&nbsp;материалов</span>
+                  <span class="img">
+                    <img src="http://cdn12.img22.ria.ru/i/mobile/icon-arrright-blue.png">
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="title-line dark">
+              <div class="clear-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer js-mediator-footer">
+          <div>
+            <a href="http://ria.ru/archive/?mobile_return=yes">
+              <span>Полная версия сайта</span>
+            </a>
+          </div>
+          <div class="copyright">
+            <span>© 2016 РИА Новости</span>
+          </div>
+          <div class="navbutton js-open-main-menu">
+            <span class="top"></span>
+            <span class="middle"></span>
+            <span class="bottom"></span>
+          </div>
+        </div>
+      </div>
+      <div class="hide-layer layer-size js-close-main-menu"></div>
+      <div class="menu-layer layer-size">
+        <img>
+        <div class="cl-mm js-close-main-menu"></div>
+        <div class="bg-mm"></div>
+        <div class="cont-mm">
+          <ul class="rubrics"><li><a href="/politics/"><span>Политика</span></a></li><li><a href="/economy/"><span>Экономика</span></a></li><li><a href="/society/"><span>Общество</span></a></li><li><a href="/incidents/"><span>Происшествия</span></a></li><li><a href="/defense_safety/"><span>Безопасность</span></a></li><li><a href="/world/"><span>В мире</span></a></li><li><a href="/science/"><span>РИА Наука</span></a></li><li><a href="/culture/"><span>Культура</span></a></li><li><a href="/sport/"><span>Спорт</span></a></li><li><a href="http://ria.ru/religion/"><span>Религия</span></a></li>
+          </ul>
+        </div>
+        <div class="navbutton js-close-main-menu">
+          <span class="top"></span>
+          <span class="middle"></span>
+          <span class="bottom"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
