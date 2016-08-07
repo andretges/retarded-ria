@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Лента новостей | РИА Новости</title>
+  <link rel="stylesheet" type="text/css" href="./css/index.m.css">
+</head>
+<body>
+  <div class="pagewrap" id="PageWrap">
+    <div class="main-layer layer-size">
+      <div id="ContWrapper">
+        <div id="ContPlace">
+          <div class="head">
+            <div class="logo-place">
+              <a href="/retarded-ria/">
+                <img src="./img/ria_logo.png" alt="РИА Новости" title="РИА Новости">
+              </a>
+            </div>
+            <div class="header-search">
+              <form action="/search/">
+                <input class="header-search__form-text" name="query" type="text">
+                <input class="header-search__form-submit js-open-search" value="" type="button">
+              </form>
+            </div>
+            <div class="navbutton js-open-main-menu">
+              <span class="top"></span>
+              <span class="middle"></span>
+              <span class="bottom"></span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="title-line ">
+              <h1 class="f-left">Лента новостей</h1>
+              <span class="now">
+                <script>
+                  var a = new Date();document.write(a.getDate() + "." + a.getMonth() + "." + a.getFullYear())
+                </script>
+              </span>
+            </div>
+            <div class="content-section">
+              <ul class="lenta-news"></ul>
+              <div class="box-pager">
+                <a onclick="fillNews(); return false;" class="butt butt-next" href="">
+                  <span class="text">Следующие 20&nbsp;материалов</span>
+                  <span class="img">
+                    <img src="./img/icon-arrright-blue.png">
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="title-line dark">
+              <div class="clear-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer js-mediator-footer">
+          <div class="copyright">
+            <span>© 2016 РИА Новости</span>
+          </div>
+          <div class="navbutton js-open-main-menu">
+            <span class="top"></span>
+            <span class="middle"></span>
+            <span class="bottom"></span>
+          </div>
+        </div>
+      </div>
+      <div class="hide-layer layer-size js-close-main-menu"></div>
+      <div class="menu-layer layer-size">
+        <img>
+        <div class="cl-mm js-close-main-menu"></div>
+        <div class="bg-mm"></div>
+        <div class="navbutton js-close-main-menu">
+          <span class="top"></span>
+          <span class="middle"></span>
+          <span class="bottom"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var arr1 = new Array('Программист 1С','Джон Кармак','Джо Армстронг','Dan Abramov','DHH','Matz','Линус Торвальдс','Дуров','Упрямый рубист','Системщик-байтофил','Обезумевший индус','Илюша','13-летний сеньор');
+    var arr2 = new Array('удалил','реализовал','забыл','написал','уничтожил','придумал','протестировал','выпустил','выложил в опенсорс','подал в суд на','съел','предал анафеме','запустил','благословил','купил себе','обоссал','насрал на','поджёг','записал песню про','добавил лишний байт в','записал на перфокарты','дизассемблировал','скомпилировал','установил','не смог установить','выучил наизусть','не понял','забил на','распечатал','проиграл в карты','снял видеоурок про','влюбился в','взломал','украл','запустил в космос');
+    var arr3 = new Array('исходники Linux','тесты','жену','leftpad','Ruby','логическую бомбу','Pokémon Go','Redis-кластер','Javascript','твиттер','Erlang','стандартную библиотеку Java','Emacs','Vim','тетрис','1C','ассемблер','ядро Basic','Google','Redux','Postgres','Haskell','строковый тип','Telegram-бота','ActiveRecord','Python','Delphi','Node.js','Go','PHP','очередную реализацию очередей','Bitcoin','искусственный интеллект','пакет пакетных менеджеров','абстрактную фабрику','пару хипстеров','весь украинский аутсорс');
+    var arr4 = new Array(' на почве',' из-за',' в бытовом споре по поводу',' в борьбе за независимость',' в результате воздействия',' под действием',' в состоянии',' под видом',' в процессе разработки',' на виду у любителей',' из-за недостатка',' от переизбытка',' в отместку за запрет',' в процессе тестирования',', протестуя против',', устав от',', опасаясь',', доказывая вред',' при поддержке',' с помощью',' в качестве доказательства существования',' в честь дня');
+    var arr5 = new Array('многопоточности','Битрикса','парного программирования','интернетов','распределенных вычислений','метапрограммирования','жидкой методологии','наркотиков','нового препроцессора JS','инопланетных излучений','конкурентности','ЦРУ','выгорания','NoSQL','гитхаба','покемонов','соцсетей','автокомплита','денег','идемпотентности','приведения типов','образования','троичной логики','плавающей запятой','сильного рубля','битовых сдвигов','кодировки CP-1251','IDE','технического долга','дедлоков','модных фреймворков','толерантности','телепортации','русского SQL','TDD','онлайн-игр','математики','онанизма','операционной системы Linux','процессорного времени','зависимостей','естественного отбора','npm install','опенсорса','функционального программирования','хакеров','падающих тестов');
+
+    function rnd(limit){
+      return Math.floor(Math.random() * limit);
+    }
+
+    function getNews(){
+      return arr1[rnd(arr1.length)] + ' ' + arr2[rnd(arr2.length)] + ' ' + arr3[rnd(arr3.length)] + arr4[rnd(arr4.length)] + ' ' + arr5[rnd(arr5.length)];
+    }
+    function fillNews(){
+      var text = '';
+      var time = new Date();
+      for(var i = 0;i<19;i++){
+        time.setMinutes(time.getMinutes() - rnd(19) - 1);
+        text += "<li><a><span class='title-text'>"+getNews()+" <span class='time-text'>"+time.getHours()+":"+time.getMinutes()+"</span></span></a></li>";
+      }
+      document.getElementsByClassName('lenta-news')[0].innerHTML = text;
+    }
+    fillNews();
+  </script>
+</body>
+</html>
